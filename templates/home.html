@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!--Bootswatch Cosmo-->
+        <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-uhut8PejFZO8994oEgm/ZfAv0mW1/b83nczZzSwElbeILxwkN491YQXsCFTE6+nx" crossorigin="anonymous">
+    </head>
+    <body>
+            <div class = "container">
+        <div class = "row">
+            <div class = "col-md-12">
+        <div class="jumbotron" style="text-align: center;align-items:center" width=100%>
+            <h1 class="display-3" style = "align-content: center">Mars Weather</h1>
+            <p class="lead">This is a dashboard showing various scraped info about Mars</p>
+            <hr class="my-4">
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a>
+            </p>
+            </div>
+            <hr style="border-color:rgb(11, 55, 177)">
+        </div>
+        </div>
+    
+    </div>
+<br>
+<div class = "container">
+    <div class = "row">
+        <!--Put the newsPara and newsTitle under "Latest Mars News" header-->
+        <div class = "col-md-12">
+        <h1 style="text-align: center">Latest Mars News</h1>
+        <hr>
+
+        </div>
+        <br>
+        <hr>
+        <div class = "col-md-12">
+        <h2 style="text-align: center">{{ mars_db.newsTitle }}</h2>
+        </div>
+        <br>
+        <div class = "col-md-12">
+        <p style="text-align: center">{{ mars_db.newsPara }}</p>
+        <hr>
+        <hr style="border-color:cadetblue">
+        </div>
+        
+        
+        <hr>
+
+        <!--Put the featured image with source at featuredImg under "Featured Mars Image" header-->
+        <div class = "col-md-7">
+            <h1 style="text-align: center">Featured Mars Image</h1>
+            <img src= "{{ mars_db.featuredImg }}" width = 100% alt = "Featured Image">
+        </div>
+
+        <!--Put marsWeather under "Current Weather on Mars" header-->
+        <div class = "col-md-5">
+            <h1>Current Weather on Mars</h1>
+            <p>{{ mars_db.marsWeather }}</p>
+            <br>
+            <hr>
+        <!--Put marsTable rendered table under "Mars Facts" header-->
+            <h1>Mars Facts</h1>
+            <small>{{ mars_db.marsTable|safe }}</small>
+        </div>
+    </div>
+</div>
+<br>
+
+        <!--Put each image (hemispheres -- img_url) and its 
+            title (hemispheres -- title) underneath it under "Mars Hemispheres" header-->
+    <div class = "container">
+    <div class = "row">
+        <div class = "col-md-12">
+            <h1 style="text-align: center">Mars Hemispheres</h1>
+            <hr>
+        </div>
+        <br>
+        <hr>
+    </div>
+    <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="jumbotron" style="text-align:center">
+                  <h2>Mars Hemispheres</h2>
+                  <div class="row">
+                    {% for dict in mars_db.hemispheres %} 
+                      <div class="col-lg-6">              
+                        <img src="{{ dict.img_url }}" height="450" width="450" style="border:5px white; border-style:solid"><br>
+                        <h2>{{ dict.title }}</h2>
+                        <br><br>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </body>
+</html>
