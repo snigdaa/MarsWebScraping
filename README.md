@@ -5,4 +5,4 @@ Used bootswatch theme: Cosmo;
 Deployed using Flask; 
 Data collected using Splinter and BeautifulSoup and stored in MongoDB using flask-pymongo
 
-Languages used: Python, HTML/CSS
+Languages used: Python, HTML/CSS.
